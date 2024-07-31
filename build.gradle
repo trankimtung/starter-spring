@@ -7,7 +7,6 @@ plugins {
 }
 
 group = 'com.trankimtung.starter'
-version = '0.0.1'
 
 java {
     toolchain {
@@ -64,7 +63,7 @@ jib {
     }
     to {
         image = 'ghcr.io/trankimtung/starter-spring'
-        tags = ['latest']
+        tags = [version.toString()]
     }
     container {
         ports = ['8080']
