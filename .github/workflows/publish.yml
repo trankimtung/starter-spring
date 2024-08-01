@@ -25,6 +25,12 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Cache jib layers
+        uses: actions/cache@v3
+        with:
+          path: build/jib-cache
+          key: ${{ runner.os }}-jib
+
       - name: Build and publish Jib container image
         run: |
           ./gradlew jib \
