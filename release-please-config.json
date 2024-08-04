@@ -1,0 +1,18 @@
+{
+  "release-type": "go",
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": false,
+  "draft": false,
+  "skip-github-release": false,
+  "always-link-local": true,
+  "separate-pull-requests": false,
+  "group-pull-request-title-pattern": "chore: release ${branch}",
+  "release-search-depth": 400,
+  "commit-search-depth": 500,
+  "sequential-calls": true,
+  "packages": {
+    ".": {
+      "release-type": "go"
+    }
+  }
+}
