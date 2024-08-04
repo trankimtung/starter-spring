@@ -1,9 +1,9 @@
 name: Publish container image
 
 on:
-  push:
-    branches:
-      - main
+  create:
+    tags:
+      - /^(\d+\.){2}\d+$/
 
 jobs:
   publish:
@@ -27,31 +27,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Cache build folder
-        uses: actions/cache@v4
-        with:
-          path: build
-          key: gradle-build|${{ github.ref_name }}
-
-      - name: Run unit tests
-        run: ./gradlew test --console=plain
-
-      - name: Publish unit tests results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          files: |
-            build/test-results/**/*.xml
-
-      - name: Build and publish Jib container image
+      - name: Build and publish container image
         run: |
           ./gradlew jib \
             -Djib.to.auth.username=${{ github.actor }} \
             -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }} \
             -Djib.console=plain
-
-      - name: Upload test reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: build/reports/tests/
