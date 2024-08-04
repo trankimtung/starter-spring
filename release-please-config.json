@@ -10,6 +10,7 @@
   "release-search-depth": 400,
   "commit-search-depth": 500,
   "sequential-calls": true,
+  "include-v-in-tag": false,
   "packages": {
     ".": {
       "release-type": "go"
