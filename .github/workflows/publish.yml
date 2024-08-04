@@ -27,11 +27,11 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Cache jib layers
+      - name: Cache build folder
         uses: actions/cache@v4
         with:
-          path: build/jib-cache
-          key: ${{ runner.os }}-jib
+          path: build
+          key: gradle-build|${{ github.ref_name }}
 
       - name: Run unit tests
         run: ./gradlew test --console=plain
