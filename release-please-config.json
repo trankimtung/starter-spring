@@ -13,7 +13,10 @@
   "include-v-in-tag": false,
   "packages": {
     ".": {
-      "release-type": "go"
+      "release-type": "go",
+      "extra-files": [
+        "gradle.properties"
+      ]
     }
   }
 }
