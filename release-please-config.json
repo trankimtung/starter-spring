@@ -5,7 +5,7 @@
   "draft": false,
   "skip-github-release": false,
   "always-link-local": true,
-  "separate-pull-requests": false,
+  "separate-pull-requests": true,
   "group-pull-request-title-pattern": "chore: release ${branch}",
   "release-search-depth": 400,
   "commit-search-depth": 500,
