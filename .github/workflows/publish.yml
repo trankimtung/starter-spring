@@ -31,9 +31,25 @@ jobs:
           path: build/jib-cache
           key: ${{ runner.os }}-jib
 
+      - name: Run unit tests
+        run: ./gradlew test --console=plain
+
+      - name: Publish unit tests results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            build/test-results/**/*.xml
+
       - name: Build and publish Jib container image
         run: |
           ./gradlew jib \
             -Djib.to.auth.username=${{ github.actor }} \
             -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }} \
             -Djib.console=plain
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: build/reports/tests/
